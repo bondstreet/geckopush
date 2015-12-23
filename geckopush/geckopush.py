@@ -696,6 +696,8 @@ class NumberAndSecondaryStat(Widget):
             _item_1 = {
                     "value": primary_value
                 }
+            if prefix is not None:
+                _item_1["prefix"] = prefix
             self.data.append(_item_1)
 
             # Check if secondary value is an integer or float
@@ -717,6 +719,8 @@ class NumberAndSecondaryStat(Widget):
                     "value": primary_value,
                     "text": text
                 }
+            if prefix is not None:
+                _item_1["prefix"] = prefix
             self.data.append(_item_1)
 
             # Check if secondary value is an integer or float
@@ -738,6 +742,8 @@ class NumberAndSecondaryStat(Widget):
             _item = {
                 "value": primary_value
             }
+            if prefix is not None:
+                _item["prefix"] = prefix
             self.data.append(_item)
 
         else:
