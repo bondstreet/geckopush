@@ -11,7 +11,7 @@ widget_key = "Widget-Key"
 def dummy_urlopen(url):
     mock_api_return = {
         'success': True,
-        'url': url.full_url,
+        'url': url.get_full_url(),
         'headers': url.headers,
     }
     json_payload = json.dumps(mock_api_return)
