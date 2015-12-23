@@ -24,7 +24,7 @@ def dummy_urlopen(url):
             return json_payload.encode('utf-8')
     return Response
 
-geckopush.urllib.request.urlopen = dummy_urlopen
+geckopush.req_lib.urlopen = dummy_urlopen
 
 class Base(object):
     """

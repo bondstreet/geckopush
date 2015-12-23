@@ -4,7 +4,10 @@ Author: Patrick Lee (me@patricklee.nyc)
 Git Repo: http://www.github.com/patleeman/geckopush
 """
 
-import urllib.request
+try:
+    import urllib.request as req_lib
+except ImportError:
+    import urllib2 as req_lib
 import json
 
 
@@ -74,13 +77,13 @@ class Widget(object):
         _api_endpoint = 'https://push.geckoboard.com/v1/send/'\
                         '{widget_key}'.format(widget_key=self.widget_key)
         _payload_json = json.dumps(self.payload).encode('utf-8')
-        _request = urllib.request.Request(url=_api_endpoint,
+        _request = req_lib.Request(url=_api_endpoint,
                                           data=_payload_json
                                           )
         _request.add_header('Content-Type', 'application/json')
 
         try:
-            _response = urllib.request.urlopen(_request)
+            _response = req_lib.urlopen(_request)
             _api_status = json.loads(_response.read().decode('utf-8'))
             _name = str(self.__class__)
             _name_truncated = _name[8:len(_name)-2]
@@ -88,7 +91,7 @@ class Widget(object):
                                                 _api_status["success"]))
             return _api_status
 
-        except urllib.request.HTTPError as e:
+        except req_lib.HTTPError as e:
             print(e)
             return e
 
